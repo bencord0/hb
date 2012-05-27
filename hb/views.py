@@ -8,7 +8,7 @@ def ping(request):
         request.META['SERVER_NAME'],
         "%s:%s"%(
             socket.gethostbyname(
-                request.META['SERVER_NAME'],
+                request.META['SERVER_NAME']),
                 request.META['SERVER_PORT']))
     you = "%s(%s)" % (
         request.META['REMOTE_HOST'],
