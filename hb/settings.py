@@ -20,6 +20,11 @@ if os.environ.has_key('OPENSHIFT_DB_URL'):
     if split_url[0] == 'postgresql':
       db_url = ':'.join('postgres', split_url[1])
     os.environ['DATABASE_URL'] = db_url
+    ## After https://github.com/kennethreitz/dj-database-url/pull/9 is merged
+    ## Use this instead
+#env = os.environ.has_key('OPENSHIFT_DB_URL') ? 'OPENSHIFT_DB_URL' : 'DATABASE_URL'
+#DATABASES = { 'default': dj_database_url.config(env=env, default="sqlite3://db.sqlite3") }
+#del env
 
 DATABASES = {
     'default': dj_database_url.config(default="sqlite3://db.sqlite3"),
