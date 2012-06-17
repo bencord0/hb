@@ -1,2 +1,5 @@
+ENV
+.env
+*.sqlite3
 *.pyc
 *.pyo
