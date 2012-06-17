@@ -1,5 +1,4 @@
 import os
-import sys
 from setuptools import setup
 
 def parse_requirements(file_name):
@@ -22,7 +21,7 @@ def parse_dependency_links(file_name):
             dependency_links.append(re.sub(r'\s*-[ef]\s+', '', line))
     return dependency_links
 
-requirements_filename = sys.path.join(os.environ.get('OPENSHIFT_REPO_DIR', ''), 'requirements.txt')
+requirements_filename = os.path.join(os.environ.get('OPENSHIFT_REPO_DIR', ''), 'requirements.txt')
 
 setup(name='hb',
     version='0.0.1',
