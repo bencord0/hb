@@ -18,7 +18,7 @@ if os.environ.has_key('OPENSHIFT_DB_URL'):
     # but OpenShift uses 'postgresql'
     split_url = db_url.split(':')
     if split_url[0] == 'postgresql':
-      db_url = ':'.join('postgres', split_url[1])
+      db_url = ':'.join(['postgres', split_url[1]])
     os.environ['DATABASE_URL'] = db_url
     ## After https://github.com/kennethreitz/dj-database-url/pull/9 is merged
     ## Use this instead
