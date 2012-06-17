@@ -1,3 +1,5 @@
+import os
+import sys
 from setuptools import setup
 
 def parse_requirements(file_name):
@@ -20,11 +22,13 @@ def parse_dependency_links(file_name):
             dependency_links.append(re.sub(r'\s*-[ef]\s+', '', line))
     return dependency_links
 
+requirements_filename = sys.path.join(os.environ.get('OPENSHIFT_REPO_DIR', ''), 'requirements.txt')
+
 setup(name='hb',
     version='0.0.1',
     description='Django Server Heartbeat App',
     author='Ben Cordero',
     author_email='bmc@linux.com',
-    install_requires = parse_requirements('requirements.txt'),
-    dependency_links = parse_dependency_links('requirements.txt'),    
+    install_requires = parse_requirements(requirements_filename),
+    dependency_links = parse_dependency_links(requirements_filename),    
 )
