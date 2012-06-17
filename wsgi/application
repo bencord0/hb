@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import os
+import sys
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'hb.settings'
 virtenv = os.environ['APPDIR'] + '/virtenv/'
@@ -13,6 +14,11 @@ except IOError:
 # IMPORTANT: Put any additional includes below this line.  If placed above this
 # line, it's possible required libraries won't be in your searchable path
 # 
+
+_root_dir = os.environ.get('OPENSHIFT_REPO_DIR', '')
+if _root_dir not in sys.path:
+    sys.path.append(_root_dir)
+del _root_dir
 
 import django.core.handlers.wsgi
 application = django.core.handlers.wsgi.WSGIHandler()
