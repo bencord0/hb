@@ -1,4 +1,5 @@
 import os
+import re
 from setuptools import setup
 
 def parse_requirements(file_name):
