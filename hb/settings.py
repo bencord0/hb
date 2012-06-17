@@ -1,4 +1,5 @@
 # Django settings for hb project.
+import os
 import dj_database_url
 
 DEBUG = True
@@ -9,6 +10,16 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
+
+# OpenShift uses OPENSHIFT_DB_URL
+if os.environ.has_key('OPENSHIFT_DB_URL'):
+    db_url = os.environ['OPENSHIFT_DB_URL']
+    # dj_database_url recognises the string 'postgres'
+    # but OpenShift uses 'postgresql'
+    split_url = db_url.split(':')
+    if split_url[0] == 'postgresql':
+      db_url = ':'.join('postgres', split_url[1])
+    os.environ['DATABASE_URL'] = db_url
 
 DATABASES = {
     'default': dj_database_url.config(default="sqlite3://db.sqlite3"),
