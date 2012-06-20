@@ -15,6 +15,7 @@ MANAGERS = ADMINS
 env = 'OPENSHIFT_DB_URL' if os.environ.has_key('OPENSHIFT_DB_URL') else 'DATABASE_URL'
 DATABASES = { 'default': dj_database_url.config(env=env, default="sqlite3://db.sqlite3") }
 del env
+print "hb.settings.DATABASE: %r"%DATABASES
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
