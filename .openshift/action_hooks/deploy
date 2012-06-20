@@ -7,6 +7,7 @@ echo "Sourcing environment"
 source ${OPENSHIFT_DATA_DIR}/${OPENSHIFT_APP_NAME}/bin/activate
 
 echo "Preparing Database"
+echo $OPENSHIFT_DB_URL
 echo -e 'import hb.settings\nprint hb.settings.DATABASES'|python ${OPENSHIFT_REPO_DIR}/manage.py shell
 echo "syncdb --noinput"
 python ${OPENSHIFT_REPO_DIR}/manage.py syncdb --noinput
