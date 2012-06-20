@@ -3,7 +3,7 @@
 # script. The application will work only if it binds to
 # $OPENSHIFT_INTERNAL_IP:8080
 
-source ${OPENSHIFT_DATA_DIR}/venv/bin/activate
+source ${OPENSHIFT_DATA_DIR}/${OPENSHIFT_APP_NAME}/bin/activate
 
 GUNICORN_BIN="python ${OPENSHIFT_REPO_DIR}/manage.py run_gunicorn"
 LOGFILE=${OPENSHIFT_LOG_DIR}/gunicorn_out.log

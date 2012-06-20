@@ -3,8 +3,10 @@
 # build hook has been run but before the application has been started back
 # up again.  This script gets executed directly, so it could be python, php,
 # ruby, etc.
-virtualenv --no-site-packages --distribute ${OPENSHIFT_DATA_DIR}/venv
-source ${OPENSHIFT_DATA_DIR/venv/bin/activate
+echo "virtualenv"
+virtualenv --no-site-packages --distribute ${OPENSHIFT_DATA_DIR}/{$OPENSHIFT_APP_NAME}
+echo "Sourcing environment"
+source ${OPENSHIFT_DATA_DIR}/${OPENSHIFT_AP_NAME}/bin/activate
 
 export PIP_DOWNLOAD_CACHE=${OPENSHIFT_TMP_DIR}/.pip/cache
 pip install --log=${OPENSHIFT_TMP_DIR}/.pip/pip.log -r ${OPENSHIFT_REPO_DIR}/requirements.txt
