@@ -5,7 +5,7 @@
 # could be python, php, ruby, etc.
 
 echo "virtualenv"
-virtualenv --no-site-packages --distribute ${OPENSHIFT_DATA_DIR}/${OPENSHIFT_APP_NAME}
+virtualenv --no-site-packages --distribute --clear ${OPENSHIFT_DATA_DIR}/${OPENSHIFT_APP_NAME}
 echo "Sourcing environment"
 source ${OPENSHIFT_DATA_DIR}/${OPENSHIFT_APP_NAME}/bin/activate
 

@@ -13,15 +13,8 @@ MANAGERS = ADMINS
 
 # OpenShift uses OPENSHIFT_DB_URL
 env = 'OPENSHIFT_DB_URL' if os.environ.has_key('OPENSHIFT_DB_URL') else 'DATABASE_URL'
-print "OPENSHIFT_DB_URL: %s"%os.environ.get('OPENSHIFT_DB_URL')
 DATABASES = { 'default': dj_database_url.config(env=env, default="sqlite3://db.sqlite3") }
 del env
-print "hb.settings.DATABASE: %r"%DATABASES
-import urlparse
-urlparse.uses_netloc.append('postgresql')
-url=urlparse.urlparse(os.environ.get('OPENSHIFT_DB_URL'))
-print url.scheme
-del url
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name

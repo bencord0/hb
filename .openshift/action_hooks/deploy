@@ -6,8 +6,6 @@
 echo "Sourcing environment"
 source ${OPENSHIFT_DATA_DIR}/${OPENSHIFT_APP_NAME}/bin/activate
 
-echo "Preparing Database"
-echo $OPENSHIFT_DB_URL
 echo "syncdb --noinput"
 python ${OPENSHIFT_REPO_DIR}/manage.py syncdb --noinput
 
