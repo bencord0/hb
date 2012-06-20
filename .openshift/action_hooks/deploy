@@ -3,3 +3,11 @@
 # build hook has been run but before the application has been started back
 # up again.  This script gets executed directly, so it could be python, php,
 # ruby, etc.
+echo "Sourcing environment"
+source ${OPENSHIFT_DATA_DIR}/${OPENSHIFT_APP_NAME}/bin/activate
+
+echo "syncdb --noinput"
+python ${OPENSHIFT_REPO_DIR}/manage.py syncdb --noinput
+
+echo "collectstatic --noinput"
+python ${OPENSHIFT_REPO_DIR}/manage.py collectstatic --noinput
