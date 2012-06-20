@@ -12,23 +12,9 @@ ADMINS = (
 MANAGERS = ADMINS
 
 # OpenShift uses OPENSHIFT_DB_URL
-if os.environ.has_key('OPENSHIFT_DB_URL'):
-    db_url = os.environ['OPENSHIFT_DB_URL']
-    # dj_database_url recognises the string 'postgres'
-    # but OpenShift uses 'postgresql'
-    split_url = db_url.split(':')
-    if split_url[0] == 'postgresql':
-      db_url = ':'.join(['postgres', split_url[1]])
-    os.environ['DATABASE_URL'] = db_url
-    ## After https://github.com/kennethreitz/dj-database-url/pull/9 is merged
-    ## Use this instead
-#env = os.environ.has_key('OPENSHIFT_DB_URL') ? 'OPENSHIFT_DB_URL' : 'DATABASE_URL'
-#DATABASES = { 'default': dj_database_url.config(env=env, default="sqlite3://db.sqlite3") }
-#del env
-
-DATABASES = {
-    'default': dj_database_url.config(default="sqlite:///db.sqlite3"),
-}
+env = os.environ.has_key('OPENSHIFT_DB_URL') ? 'OPENSHIFT_DB_URL' : 'DATABASE_URL'
+DATABASES = { 'default': dj_database_url.config(env=env, default="sqlite3://db.sqlite3") }
+del env
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
