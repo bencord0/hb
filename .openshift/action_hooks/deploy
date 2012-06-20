@@ -15,4 +15,4 @@ echo "syncdb --noinput"
 python ${OPENSHIFT_REPO_DIR}/manage.py syncdb --noinput
 
 echo "collectstatic --noinput"
-python ${OPENSHIFT_REPO_DIR}/manage.py collectstatic --no-input
+python ${OPENSHIFT_REPO_DIR}/manage.py collectstatic --noinput
