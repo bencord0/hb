@@ -27,7 +27,7 @@ if os.environ.has_key('OPENSHIFT_DB_URL'):
 #del env
 
 DATABASES = {
-    'default': dj_database_url.config(default="sqlite3://db.sqlite3"),
+    'default': dj_database_url.config(default="sqlite:///db.sqlite3"),
 }
 
 # Local time zone for this installation. Choices can be found here:

@@ -1,4 +1,8 @@
 #!/bin/bash
 # The logic to stop your application should be put in this script.
-kill `ps -ef | grep testrubyserver.rb | grep -v grep | awk '{ print $2 }'` > /dev/null 2>&1
-exit 0
+PIDFILE=${OPENSHIFT_DATA_DIR}/gunicorn.pid
+if [ -f $PIDFILE ]; then
+    PID=$(cat $PIDFILE)
+    rm $PIDFILE
+    kill -15 $PID
+fi
