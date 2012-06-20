@@ -12,7 +12,7 @@ ADMINS = (
 MANAGERS = ADMINS
 
 # OpenShift uses OPENSHIFT_DB_URL
-env = os.environ.has_key('OPENSHIFT_DB_URL') ? 'OPENSHIFT_DB_URL' : 'DATABASE_URL'
+env = 'OPENSHIFT_DB_URL' if os.environ.has_key('OPENSHIFT_DB_URL') else 'DATABASE_URL'
 DATABASES = { 'default': dj_database_url.config(env=env, default="sqlite3://db.sqlite3") }
 del env
 
