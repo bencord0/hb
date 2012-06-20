@@ -12,8 +12,10 @@ ADMINS = (
 MANAGERS = ADMINS
 
 # OpenShift uses OPENSHIFT_DB_URL
-env = 'OPENSHIFT_DB_URL' if os.environ.has_key('OPENSHIFT_DB_URL') else 'DATABASE_URL'
-DATABASES = { 'default': dj_database_url.config(env=env, default="sqlite3://db.sqlite3") }
+if os.environ.has_key('OPENSHIFT_DB_URL'):
+    os.environ['DATABASE_URL'] = "%s%s"%(os.environ['OPENSHIFT_DB_URL'], os.environ['OPENSHIFT_APP_NAME'])
+
+DATABASES = { 'default': dj_database_url.config(default="sqlite3://db.sqlite3") }
 del env
 
 # Local time zone for this installation. Choices can be found here:
