@@ -1,1 +1,1 @@
-web: ./manage.py runserver 0.0.0.0:$PORT
+web: ./manage.py run_gunicorn -b 0.0.0.0:$PORT
