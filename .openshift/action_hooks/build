@@ -4,11 +4,13 @@
 # before the deploy step.  This script gets executed directly, so it
 # could be python, php, ruby, etc.
 
-echo "virtualenv"
-virtualenv --no-site-packages --distribute --clear ${OPENSHIFT_DATA_DIR}/${OPENSHIFT_APP_NAME}
-echo "Sourcing environment"
-source ${OPENSHIFT_DATA_DIR}/${OPENSHIFT_APP_NAME}/bin/activate
+echo "Creating VirtualEnv"
+virtualenv --no-site-packages --distribute --clear ${OPENSHIFT_DATA_DIR}venv
 
-export PIP_DOWNLOAD_CACHE=${OPENSHIFT_TMP_DIR}/.pip/cache
-pip install --log=${OPENSHIFT_TMP_DIR}/.pip/pip.log -r ${OPENSHIFT_REPO_DIR}/requirements.txt
+echo "Entering VirtualEnv"
+source ${OPENSHIFT_DATA_DIR}venv/bin/activate
+
+echo "Resolving Dependencies"
+export PIP_DOWNLOAD_CACHE=${OPENSHIFT_TMP_DIR}.pip/cache
+pip install --log=${OPENSHIFT_TMP_DIR}.pip/pip.log -r ${OPENSHIFT_REPO_DIR}requirements.txt
 

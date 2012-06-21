@@ -3,13 +3,15 @@
 # script. The application will work only if it binds to
 # $OPENSHIFT_INTERNAL_IP:8080
 
-source ${OPENSHIFT_DATA_DIR}/${OPENSHIFT_APP_NAME}/bin/activate
+echo "Entering VirtualEnv"
+source ${OPENSHIFT_DATA_DIR}venv/bin/activate
 
-GUNICORN_BIN="python ${OPENSHIFT_REPO_DIR}/manage.py run_gunicorn"
-LOGFILE=${OPENSHIFT_LOG_DIR}/gunicorn_out.log
-ACCESS_LOGFILE=${OPENSHIFT_LOG_DIR}/gunicorn_access.log
-PIDFILE=${OPENSHIFT_DATA_DIR}/gunicorn.pid
+GUNICORN_BIN="python ${OPENSHIFT_REPO_DIR}manage.py run_gunicorn"
+LOGFILE=${OPENSHIFT_LOG_DIR}gunicorn_out.log
+ACCESS_LOGFILE=${OPENSHIFT_LOG_DIR}gunicorn_access.log
+PIDFILE=${OPENSHIFT_DATA_DIR}gunicorn.pid
 
+echo "Starting gunicorn"
 $GUNICORN_BIN $OPENSHIFT_INTERNAL_IP:$OPENSHIFT_INTERNAL_PORT \
     --daemon \
     --pid=$PIDFILE \
