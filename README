@@ -1,4 +1,4 @@
-A hearbeat for django servers
+A HearBeat for django servers
 
 At the moment, it is very simple and will only reply with a timestamp and
 some naive fingerprinting. Usually this means that any resolved IPs
