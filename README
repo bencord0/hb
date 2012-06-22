@@ -3,3 +3,5 @@ A hearbeat for django servers
 At the moment, it is very simple and will only reply with a timestamp and
 some naive fingerprinting. Usually this means that any resolved IPs
 (especially on cloud platforms) are internal and useless.
+
+Expect more features such as peer polling in the future.
