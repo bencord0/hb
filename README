@@ -6,3 +6,4 @@ some naive fingerprinting. Usually this means that any resolved IPs
 
 Expect more features such as peer polling in the future.
 Logging and displaying historical pings to a database.
+Reporting service outages.
