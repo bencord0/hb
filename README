@@ -1,1 +1,3 @@
 A hearbeat for django servers
+
+At the moment, it is very simple and will only reply with a timestamp and some naive fingerprinting.
