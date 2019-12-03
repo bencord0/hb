@@ -1,6 +1,6 @@
 Django==1.4
 distribute==0.6.24
 git+git://github.com/kennethreitz/dj-database-url.git@c27a5e2b381981251f31afdee0d8e2e32a12a79f#dj-database-url
-gunicorn==0.14.3
+gunicorn==19.5.0
 psycopg2==2.4.5
 wsgiref==0.1.2
