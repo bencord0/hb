@@ -12,9 +12,11 @@
 # You should have received a copy of the GNU General Public License
 # along with hb.  If not, see <http://www.gnu.org/licenses/>.
 
-from django.conf.urls import patterns, include, url
+from django.urls import include, path
 
-urlpatterns = patterns('throb.views',
-    url(r'^$', 'ping'),
-    url(r'^index/$', 'index'),
-)
+from . import views
+
+urlpatterns = [
+    path(r'', views.ping, name='ping'),
+    path(r'index/', views.index, name='index'),
+]

@@ -26,10 +26,10 @@ ADMINS = (
 MANAGERS = ADMINS
 
 # OpenShift uses OPENSHIFT_DB_URL
-if os.environ.has_key('OPENSHIFT_DB_URL'):
+if os.environ.get('OPENSHIFT_DB_URL'):
     os.environ['DATABASE_URL'] = "%s%s"%(os.environ['OPENSHIFT_DB_URL'], os.environ['OPENSHIFT_APP_NAME'])
 
-DATABASES = { 'default': dj_database_url.config(default="sqlite3://db.sqlite3") }
+DATABASES = { 'default': dj_database_url.config(default="sqlite://db.sqlite3") }
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -174,46 +174,3 @@ LOGGING = {
         },
     },
 }
-
-
-#################################################
-# Environment and cloud host detection
-#################################################
-import os
-try:
-    # detection based on environment set by the heroku runtime
-    # https://devcenter.heroku.com/articles/python-support#environment
-    using_heroku = '.heroku' in os.environ['PYTHONHOME']
-except KeyError:
-    using_heroku = False
-
-if not using_heroku:
-    # Copied and inspired by
-    # https://devcenter.heroku.com/articles/django#postgres_databse_config
-    import os
-    import sys
-    import urlparse
-
-    urlparse.uses_netloc.append('postgresql')
-    urlparse.uses_netloc.append('mysql')
-
-    try:
-        if 'DATABASES' not in locals():
-            DATABASES = {}
-        if 'DATABASE_URL' in os.environ:
-            url = urlparse.urlparse(os.environ['DATABASE_URL'])
-            DATABASES['defult'] = DATABASES.get('default', {})
-            DATABASES['default'].update({
-                'NAME': url.path[1:],
-                'USER': url.username,
-                'PASSWORD': url.password,
-                'HOST': url.hostname,
-                'PORT': url.port,
-            })
-
-            if url.scheme == 'postgres':
-                DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
-            if url.scheme == 'mysql':
-                DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
-    except Exception:
-        print('Unexpected error: %s', sys.exc_info())
